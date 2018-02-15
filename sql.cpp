@@ -3,47 +3,40 @@
 
 using namespace std;
 
-int main()
+struct Student
 {
-/*CREATE TABLE Persons (
-    ID int,
-    name varchar(255),
-    roll int,
-    email varchar(255),
- );*/
-    cout<<"Enter command : "<<endl;
-    string s1,s2,s3,s4;
-    cin>>s1>>s2>>s3>>s4;
-	struct Student
-	{
-		int ID;
-		string name;
-		int roll;
-		string email;
-	};
+    int ID;
+    string name;
+    int roll;
+    string email;
+};
 
-	Student s;
+Student s;
+int ID,roll;
+string name,email;
+string s1,s2,s3,s4;
 
-	int ID,roll;
-	string name,email;
-
-	ofstream oFile;
+void createTable()
+{
+    ofstream oFile;
 	oFile.open("database.txt");
 
-     if(s4=="(")
+    if(s4=="(")
     {
-                    cin>>s4;
+        cin>>s4;
         while(s4!=")")
         {
 
             oFile<<s4<<'\t';
-                        cin>>s4;
+            cin>>s4;
         }
 
     }
+    oFile<<endl;
 
     cout<<"Enter ID,name,roll and email : "<<endl;
 	cin>>ID>>name>>roll>>email;
+
     while(1)
     {
         s.ID=ID;
@@ -58,10 +51,21 @@ int main()
 
     if(s1=="CREATE")oFile<<endl<<"Table name : "<< s3<<endl;
 
-
 	oFile.close();
 
+}
+int main()
+{
+/*CREATE TABLE Persons (
+    ID int,
+    name varchar(255),
+    roll int,
+    email varchar(255),
+ );*/
+    cout<<"Enter command : "<<endl;
+    cin>>s1>>s2>>s3>>s4;
 
+	if(s1=="CREATE")createTable();
 
 	return 0;
 }
