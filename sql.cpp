@@ -23,22 +23,14 @@ int main()
 	};
 
 	Student s;
-     cout<<"Enter ID,name,roll and email : "<<endl;
 
 	int ID,roll;
 	string name,email;
 
-	cin>>ID>>name>>roll>>email;
-
-	s.ID=ID;
-	s.name=name;
-	s.roll=roll;
-	s.email=email;
-
 	ofstream oFile;
 	oFile.open("database.txt");
-    if(s1=="CREATE")cout<<"Table name : "<< s3<<endl;
-    if(s4=="(")
+
+     if(s4=="(")
     {
                     cin>>s4;
         while(s4!=")")
@@ -50,7 +42,22 @@ int main()
 
     }
 
- 	oFile<<endl<<s.ID << '\t' <<s.name<< '\t'<<s.roll<<'\t'<<s.email<<'\t'<<endl;
+    cout<<"Enter ID,name,roll and email : "<<endl;
+	cin>>ID>>name>>roll>>email;
+    while(1)
+    {
+        s.ID=ID;
+        s.name=name;
+        s.roll=roll;
+        s.email=email;
+        oFile<<endl<<s.ID << '\t' <<s.name<< '\t'<<s.roll<<'\t'<<s.email<<'\t'<<endl;
+    	cin>>ID;
+    	if(ID==0)break;
+    	cin>>name>>roll>>email;
+    }
+
+    if(s1=="CREATE")oFile<<endl<<"Table name : "<< s3<<endl;
+
 
 	oFile.close();
 
