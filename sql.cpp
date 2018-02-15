@@ -5,6 +5,15 @@ using namespace std;
 
 int main()
 {
+/*CREATE TABLE Persons (
+    ID int,
+    name varchar(255),
+    roll int,
+    email varchar(255),
+ );*/
+    cout<<"Enter command : "<<endl;
+    string s1,s2,s3,s4;
+    cin>>s1>>s2>>s3>>s4;
 	struct Student
 	{
 		int ID;
@@ -12,36 +21,40 @@ int main()
 		int roll;
 		string email;
 	};
-	
+
 	Student s;
-	
+     cout<<"Enter ID,name,roll and email : "<<endl;
+
 	int ID,roll;
 	string name,email;
-	
+
 	cin>>ID>>name>>roll>>email;
-	
+
 	s.ID=ID;
 	s.name=name;
 	s.roll=roll;
 	s.email=email;
-	
+
 	ofstream oFile;
-	oFile.open("Struct.txt");
-	oFile<<"Student ID: "<< s.ID <<endl;
-	oFile<<"Student name: "<< s.name <<endl;
-	oFile<<"Student roll: "<< s.roll <<endl;
-	oFile<<"Student email: "<< s.email <<endl;
-	
+	oFile.open("database.txt");
+    if(s1=="CREATE")cout<<"Table name : "<< s3<<endl;
+    if(s4=="(")
+    {
+                    cin>>s4;
+        while(s4!=")")
+        {
+
+            oFile<<s4<<'\t';
+                        cin>>s4;
+        }
+
+    }
+
+ 	oFile<<endl<<s.ID << '\t' <<s.name<< '\t'<<s.roll<<'\t'<<s.email<<'\t'<<endl;
+
 	oFile.close();
-	
-	ifstream iFile;
-	iFile.open("input.txt");
-	
-	iFile>>ID>>name>>roll>>email;
-	
-	cout<<ID<<endl<<name<<endl<<roll<<endl<<email<<endl;
-	
-	oFile.close();
-	
+
+
+
 	return 0;
 }
