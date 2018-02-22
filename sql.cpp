@@ -18,8 +18,18 @@ string s1,s2,s3,s4;
 
 void createTable()
 {
-    ofstream oFile;
-	oFile.open("database.txt");
+    fstream oFile;
+	//oFile.open("database.dat", ios::in | ios::out);
+
+	/*if(file_is_open())
+    {
+        string temp;
+        while(getline(oFile,temp) && cout<<temp<<endl);
+    }*/
+
+
+    oFile.open("database.dat", ios::in | ios::out | ios::trunc);
+
 
     if(s4=="(")
     {
@@ -54,6 +64,21 @@ void createTable()
 	oFile.close();
 
 }
+
+void readDatFile()
+{
+    fstream iFile;
+    iFile.open("database.dat", ios::in | ios::out);
+
+    if(iFile.is_open())
+    {
+        string input;
+        while(getline(iFile,input) && cout<<input<<endl);
+    }
+
+    iFile.close();
+
+}
 int main()
 {
 /*CREATE TABLE Persons (
@@ -66,6 +91,6 @@ int main()
     cin>>s1>>s2>>s3>>s4;
 
 	if(s1=="CREATE")createTable();
-
+    readDatFile();
 	return 0;
 }
