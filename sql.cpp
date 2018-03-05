@@ -14,22 +14,35 @@ struct Student
 Student s;
 int ID,roll;
 string name,email;
-string s1,s2,s3,s4;
+string s1,s2,s3,s4,s5;
+
+
+void readDatFile()
+{
+    fstream iFile;
+    iFile.open("database.dat", ios::in | ios::out);
+    if(iFile.is_open())
+    {
+        string input;
+        while(getline(iFile,input))
+        {
+            cout<<input<<endl;
+        }
+    }
+
+    iFile.close();
+
+}
 
 void createTable()
 {
     fstream oFile;
-	//oFile.open("database.dat", ios::in | ios::out);
 
-	/*if(file_is_open())
-    {
-        string temp;
-        while(getline(oFile,temp) && cout<<temp<<endl);
-    }*/
-
+    int sem;
 
     oFile.open("database.dat", ios::in | ios::out | ios::trunc);
 
+    if(s1=="CREATE")oFile<< s3<<endl<<endl;
 
     if(s4=="(")
     {
@@ -41,56 +54,74 @@ void createTable()
             cin>>s4;
         }
 
+    cin>>sem;
+
     }
     oFile<<endl;
 
-    cout<<"Enter ID,name,roll and email : "<<endl;
-	cin>>ID>>name>>roll>>email;
-
-    while(1)
-    {
-        s.ID=ID;
-        s.name=name;
-        s.roll=roll;
-        s.email=email;
-        oFile<<endl<<s.ID << '\t' <<s.name<< '\t'<<s.roll<<'\t'<<s.email<<'\t'<<endl;
-    	cin>>ID;
-    	if(ID==0)break;
-    	cin>>name>>roll>>email;
-    }
-
-    if(s1=="CREATE")oFile<<endl<<"Table name : "<< s3<<endl;
-
 	oFile.close();
 
+	readDatFile();
+
 }
 
-void readDatFile()
+void insertTable()
 {
-    fstream iFile;
-    iFile.open("database.dat", ios::in | ios::out);
+     string s6,s7,s9,input;
 
-    if(iFile.is_open())
-    {
-        string input;
-        while(getline(iFile,input) && cout<<input<<endl);
-    }
+     fstream oFile,iFile;
+
+     oFile.open("database.dat", ios::app);
+
+     iFile.open("database.dat", ios::in);
+
+     iFile>>input;
+
+     if(input==s3)
+     {
+          while(cin>>s6>>s7)
+          {
+             oFile<<s6<<'\t';
+             if(s7==")") break;
+          }
+
+     }
+
+    cout<<endl;
 
     iFile.close();
+    oFile.close();
+
+    readDatFile();
 
 }
+
+
 int main()
 {
-/*CREATE TABLE Persons (
-    ID int,
-    name varchar(255),
-    roll int,
-    email varchar(255),
- );*/
-    cout<<"Enter command : "<<endl;
-    cin>>s1>>s2>>s3>>s4;
+    int f=2;
+    string s;
+    int gh;
 
-	if(s1=="CREATE")createTable();
-    readDatFile();
+
+        cout<<"Enter command : "<<endl;
+         cin>>s1;
+
+
+        if(s1=="CREATE")
+        {
+            cin>>s2>>s3>>s4;
+            createTable();
+        }
+
+
+         if(s1=="INSERT")
+        {
+            cin>>s2>>s3>>s4>>s5;
+             insertTable();
+        }
+
+
+
 	return 0;
 }
