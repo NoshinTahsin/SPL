@@ -1,7 +1,6 @@
 table1
 
-ID	NAME	ROLL	EMAIL	
-1	Saaj	0914	saaj@gmail.com	
-2	Anika	0925	anika@gmail.com	
-3	Tahsin	0989	tahsin@gmail.com	
-
+ID	NAME				ROLL	EMAIL				
+1,	Saaj,				0914,	saaj@gmail.com		
+2,	ANIKA,				0925,	anika@gmail.com		
+3,	Noshin,				0914,	noshin@gmail.com	

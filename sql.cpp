@@ -11,6 +11,7 @@ struct Student
     string email;
 };
 
+int cnt=0,c=0;
 Student s;
 int ID,roll;
 string name,email;
@@ -48,17 +49,37 @@ void createTable()
 
     if(s4=="(")
     {
-        cin>>s4;
+        cin>>s4>>s5;
         while(s4!=")")
         {
+            cnt++;
+            if(s5=="int")
+            {
+                oFile<<s4<<'\t';
+            }
 
-            oFile<<s4<<'\t';
-            cin>>s4;
+            else if(s5=="VARCHAR")
+            {
+                oFile<<s4;
+                int len=s4.length();
+                int space=20-len;
+
+                for(int i=0;i<space;)
+                {
+                    oFile<<'\t';
+                    i+=4;
+                }
+
+            }
+
+
+             cin>>s4>>s5;
         }
 
-    cin>>sem;
+  //  cin>>sem;
 
     }
+
     oFile<<endl;
 
 	oFile.close();
@@ -81,11 +102,28 @@ void insertTable()
 
      if(input==s3)
      {
-          while(cin>>s6>>s7)
+          while(cin>>s6)
           {
-             oFile<<s6<<'\t';
-             if(s7==")") break;
-          }
+
+                if(s6==")") break;
+                c++;
+             if(c==1 || c==3)oFile<<s6<<'\t';
+             else
+             {
+                oFile<<s6;
+                int len=s6.length();
+                int space=20-len;
+
+                for(int i=0;i<space;)
+                {
+                    oFile<<'\t';
+                    i+=4;
+                }
+             }
+
+
+
+             }
 
            oFile<<endl;
 
@@ -122,13 +160,11 @@ int main()
         }
 
 
-         if(s1=="INSERT")
+        if(s1=="INSERT")
         {
             cin>>s2>>s3>>s4>>s5;
              insertTable();
         }
-
-
 
 	return 0;
 }
