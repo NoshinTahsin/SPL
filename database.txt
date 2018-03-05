@@ -1,9 +1,0 @@
-ID	NAME	ROLL	EMAIL	
-
-1	SAAJ	914	saaj@gmail.com	
-
-2	ANIKA	925	anika@gmail.com	
-
-3	ISHITA	922	ishita@gmail.com	
-
-Table name : TABLE1

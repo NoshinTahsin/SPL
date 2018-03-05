@@ -30,6 +30,8 @@ void readDatFile()
         }
     }
 
+    cout<<endl;
+
     iFile.close();
 
 }
@@ -40,7 +42,7 @@ void createTable()
 
     int sem;
 
-    oFile.open("database.dat", ios::in | ios::out | ios::trunc);
+    oFile.open("database.dat", ios::app);
 
     if(s1=="CREATE")oFile<< s3<<endl<<endl;
 
@@ -85,7 +87,12 @@ void insertTable()
              if(s7==")") break;
           }
 
+           oFile<<endl;
+
      }
+
+     else cout<<s3<<" Doesn't Exist. "<<endl;
+
 
     cout<<endl;
 
