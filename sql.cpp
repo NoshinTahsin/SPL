@@ -1,4 +1,4 @@
- #include<iostream>
+#include<iostream>
 #include<fstream>
 
 using namespace std;
@@ -11,7 +11,7 @@ struct Student
     string email;
 };
 
- int cnt=0,c=0;
+int cnt=0,c=0;
 
 int ID,roll;
 string name,email;
@@ -19,7 +19,6 @@ string s1,s2,s3,s4,s5;
 string column[10];
 string key;
 int keyValue;
-
 
 void readDatFile()
 {
@@ -76,10 +75,8 @@ void createTable()
 
             }
 
-
-             cin>>s4>>s5;
+            cin>>s4>>s5;
         }
-
     }
 
     oFile<<endl;
@@ -113,7 +110,6 @@ void insertTable( )
      oNumFile<<write<<endl;
      oNumFile.close();
 
-    //cout<<index<<endl;
      fstream oFile,iFile;
 
      oFile.open("database.dat", ios::app);
@@ -129,37 +125,28 @@ void insertTable( )
           int len=s7.length();
           int space=20-len;
 
+          oFile<< i1<<'\t'<<s7;
 
+          for(int i=0;i<space;)
+          {
+              oFile<<'\t';
+              i+=4;
+          }
 
-            oFile<< i1<<'\t'<<s7;
+          oFile<<i2<<'\t'<<s9;
 
-            for(int i=0;i<space;)
-                {
-                    oFile<<'\t';
-                    i+=4;
-                }
+          oFile<<endl;
 
-
-            oFile<<i2<<'\t'<<s9;
-
-            oFile<<endl;
-
-
-
-
-            //cout<<index<<endl;
      }
 
      else cout<<s3<<" Doesn't Exist. "<<endl;
 
+     cout<<endl;
 
-    cout<<endl;
+     iFile.close();
+     oFile.close();
 
-    iFile.close();
-    oFile.close();
-
-    readDatFile();
-
+     readDatFile();
 }
 
 void deleteTable()
@@ -168,13 +155,12 @@ void deleteTable()
      string input,col;
 
      oFile.open("database.dat", ios::app);
-
      iFile.open("database.dat", ios::in);
 
      iFile>>input;
      int targetIndex;
-    int col1,col3;
-    string col2,col4;
+     int col1,col3;
+     string col2,col4;
 
      if(input==s3)
      {
@@ -200,14 +186,21 @@ void deleteTable()
 
          for(int j=0;j<index;j++)
          {
-              s[j].ID==col1;
-              s[j].name==col2;
-              s[j].roll==col3;
-              s[j].email==col4;
+              s[j].ID=col1;
+              s[j].name=col2;
+              s[j].roll=col3;
+              s[j].email=col4;
 
               iFile>>col1>>col2>>col3>>col4;
 
          }
+
+           cout<<index<<endl;
+        for(int i=0;i<index;i++)
+        {
+            cout<<s[i].ID<<'\t'<<s[i].name<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
+        }
+
 
 
          if(targetIndex==0)
@@ -237,9 +230,11 @@ void deleteTable()
              oFile<<column[i]<<'\t';
          }
 
+         oFile<<endl;
+
          for(int i=0;i<index;i++)
          {
-             if(i!=gotValue)oFile<<s[i].ID<<'\t'<<s[i].name<<'\t'<<s[i].roll<<'\t'<<s[i].email<<'\t';
+             if(i!=gotValue)oFile<<s[i].ID<<'\t'<<s[i].name<<'\t'<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
 
          }
 
@@ -254,24 +249,8 @@ void deleteTable()
 
 }
 
-void readStruct()
-{
-        fstream iNumFile;
-        int index;
 
-        iNumFile.open("num.dat", ios::in);
-        iNumFile>>index;
-        iNumFile.close();
-        cout<<index<<endl;
 
-         Student *s = new Student[index];
-
-        for(int i=0;i<index;i++)
-        {
-            cout<<s[i].ID<<'\t'<<s[i].name<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
-        }
-
-}
 
 
 int main()
@@ -313,7 +292,6 @@ int main()
             deleteTable();
         }
 
-        readStruct();
 
 	return 0;
 }
