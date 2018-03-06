@@ -12,7 +12,7 @@ struct Student
 };
 
  int cnt=0,c=0;
-Student s[100];
+
 int ID,roll;
 string name,email;
 string s1,s2,s3,s4,s5;
@@ -129,13 +129,9 @@ void insertTable( )
           int len=s7.length();
           int space=20-len;
 
-            s[index].ID=i1;
-            s[index].name=s7;
-            s[index].roll=i2;
-            s[index].email=s9;
 
 
-            oFile<< s[index].ID<<'\t'<<s[index].name;
+            oFile<< i1<<'\t'<<s7;
 
             for(int i=0;i<space;)
                 {
@@ -144,7 +140,7 @@ void insertTable( )
                 }
 
 
-            oFile<<s[index].roll<<'\t'<<s[index].email;
+            oFile<<i2<<'\t'<<s9;
 
             oFile<<endl;
 
@@ -177,6 +173,8 @@ void deleteTable()
 
      iFile>>input;
      int targetIndex;
+    int col1,col3;
+    string col2,col4;
 
      if(input==s3)
      {
@@ -188,12 +186,29 @@ void deleteTable()
          }
 
          int gotValue;
-         int index;\
+         int index;
          fstream iNumFile;
 
          iNumFile.open("num.dat", ios::in);
          iNumFile>>index;
          iNumFile.close();
+
+
+         Student *s = new Student[index];
+
+         iFile>>col1>>col2>>col3>>col4;
+
+         for(int j=0;j<index;j++)
+         {
+              s[j].ID==col1;
+              s[j].name==col2;
+              s[j].roll==col3;
+              s[j].email==col4;
+
+              iFile>>col1>>col2>>col3>>col4;
+
+         }
+
 
          if(targetIndex==0)
          {
@@ -248,6 +263,9 @@ void readStruct()
         iNumFile>>index;
         iNumFile.close();
         cout<<index<<endl;
+
+         Student *s = new Student[index];
+
         for(int i=0;i<index;i++)
         {
             cout<<s[i].ID<<'\t'<<s[i].name<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
