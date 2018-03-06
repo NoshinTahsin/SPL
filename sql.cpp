@@ -1,5 +1,6 @@
 #include<iostream>
 #include<fstream>
+#include<sstream>
 
 using namespace std;
 
@@ -18,6 +19,8 @@ string name,email;
 string s1,s2,s3,s4,s5;
 string column[10];
 string key;
+string colName,cId;
+int in;
 int keyValue;
 
 void readDatFile()
@@ -100,7 +103,7 @@ void insertTable( )
      iNumFile>>index;
      iNumFile.close();
 
-     cout<<index<<endl;
+     //cout<<index<<endl;
 
      int write = index+1;
 
@@ -139,7 +142,7 @@ void insertTable( )
 
      }
 
-     else cout<<s3<<" Doesn't Exist. "<<endl;
+     else cout<<endl<<s3<<" Doesn't Exist. "<<endl;
 
      cout<<endl;
 
@@ -173,12 +176,12 @@ void deleteTable()
 
          int gotValue;
          int index;
+
          fstream iNumFile;
 
          iNumFile.open("num.dat", ios::in);
          iNumFile>>index;
          iNumFile.close();
-
 
          Student *s = new Student[index];
 
@@ -195,24 +198,21 @@ void deleteTable()
 
          }
 
-           cout<<index<<endl;
-        for(int i=0;i<index;i++)
-        {
+         cout<<index<<endl;
+
+         for(int i=0;i<index;i++)
+         {
             cout<<s[i].ID<<'\t'<<s[i].name<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
-        }
-
-
+         }
 
          if(targetIndex==0)
          {
-            cout<<"Index is : "<<index<<endl;
-
-             for(int j=0;j<index;j++)
+             //cout<<"Index is : "<<index<<endl;
+             for(int j=0;j<index-1;j++)
              {
                  if(s[j].ID==keyValue)gotValue=j;
                     else cout<<"Invalid index"<<endl;
              }
-
          }
 
          iFile.close();
@@ -220,10 +220,9 @@ void deleteTable()
 
          remove("database.dat");
 
-
-         //fstream oFile,iFile;
-
          oFile.open("database.dat", ios::app);
+
+         oFile<<input<<endl;
 
          for(int i=0;i<4;i++)
          {
@@ -232,7 +231,7 @@ void deleteTable()
 
          oFile<<endl;
 
-         for(int i=0;i<index;i++)
+         for(int i=0;i<index-1;i++)
          {
              if(i!=gotValue)oFile<<s[i].ID<<'\t'<<s[i].name<<'\t'<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
 
@@ -244,54 +243,167 @@ void deleteTable()
 
      else cout<<s3<<" Doesn't Exist. Can't perform the deletion "<<endl;
 
+     readDatFile();
+
+}
+
+void updateTable()
+{
+     fstream oFile,iFile;
+     string input,col;
+
+     oFile.open("database.dat", ios::app);
+     iFile.open("database.dat", ios::in);
+
+     iFile>>input;
+     int targetIndex;
+     int col1,col3;
+     string col2,col4;
+
+     if(input==s3)
+     {
+         for(int i=0;i<4;i++)
+         {
+            iFile>>col;
+            column[i]=col;
+            if(column[i]==colName)targetIndex=i;
+         }
+
+         int gotValue;
+         int index;
+
+         fstream iNumFile;
+
+         iNumFile.open("num.dat", ios::in);
+         iNumFile>>index;
+         iNumFile.close();
+
+         Student *s = new Student[index];
+
+         iFile>>col1>>col2>>col3>>col4;
+
+         for(int j=0;j<index;j++)
+         {
+              s[j].ID=col1;
+              s[j].name=col2;
+              s[j].roll=col3;
+              s[j].email=col4;
+
+              iFile>>col1>>col2>>col3>>col4;
+
+         }
+
+         for(int i=0;i<index;i++)
+         {
+            cout<<s[i].ID<<'\t'<<s[i].name<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
+         }
+
+            //cout<<"Index is : "<<index<<endl;
+             for(int j=0;j<index-1;j++)
+             {
+                 if(s[j].ID==in)
+                 {
+                    /*if(targetIndex==0)
+                    {
+                        int x;
+                        istringstream iss;
+                        iss>>keyValue;
+                        iss(x);
+                        s[j].ID=x;
+                    }*/
+
+                    if(targetIndex==1)
+                    {
+                        s[j].name=keyValue;
+                    }
+
+                    /*else if(targetIndex==2)
+                    {
+                        int x;
+                        istringstream iss(keyValue);
+                        iss<<x;
+                        s[j].roll=x;
+                    }*/
+
+                    else if(targetIndex==4)
+                    {
+                        s[j].email=keyValue;
+                    }
+                 }
+
+                 else cout<<"Invalid index"<<endl;
+             }
+
+         iFile.close();
+         oFile.close();
+
+         remove("database.dat");
+
+         oFile.open("database.dat", ios::app);
+
+         oFile<<input<<endl;
+
+         for(int i=0;i<4;i++)
+         {
+             oFile<<column[i]<<'\t';
+         }
+
+         oFile<<endl;
+
+         for(int i=0;i<index-1;i++)
+         {
+             oFile<<s[i].ID<<'\t'<<s[i].name<<'\t'<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
+         }
+
+         oFile.close();
+
+     }
+
+     else cout<<s3<<" Doesn't Exist. Can't perform the deletion "<<endl;
 
      readDatFile();
 
 }
 
-
-
-
-
 int main()
 {
-    int f=2;
     string where,sem;
-    int gh;
     int indexp=0;
     int init=1;
 
     fstream iNumFile;
 
-     iNumFile.open("num.dat", ios::app);
-     iNumFile<<init<<endl;
-     iNumFile.close();
+    iNumFile.open("num.dat", ios::app);
+    iNumFile<<init<<endl;
+    iNumFile.close();
 
-        cout<<"Enter command : "<<endl;
-         cin>>s1;
-
-
-        if(s1=="CREATE")
-        {
-            cin>>s2>>s3>>s4;
-            createTable();
-        }
+    cout<<"Enter command : "<<endl;
+    cin>>s1;
 
 
-        if(s1=="INSERT")
-        {
-            cin>>s2>>s3>>s4>>s5;
-            insertTable();
-        }
+    if(s1=="CREATE")
+    {
+        cin>>s2>>s3>>s4;
+        createTable();
+    }
 
+    else if(s1=="INSERT")
+    {
+        cin>>s2>>s3>>s4>>s5;
+        insertTable();
+    }
 
-        if(s1=="DELETE")
-        {
-            cin>>s2>>s3>>where>>key>>s4>>keyValue>>sem;
+    else if(s1=="DELETE")
+    {
+        cin>>s2>>s3>>where>>key>>s4>>keyValue>>sem;
+        deleteTable();
+    }
 
-            deleteTable();
-        }
-
+    else if(s1=="UPDATE")
+    {
+        cin>>s3>>s2>>colName>>s4>>keyValue>>where>>cId>>s5>> in>>sem;
+        updateTable();
+    }
 
 	return 0;
 }
