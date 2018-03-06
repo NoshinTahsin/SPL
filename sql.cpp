@@ -226,19 +226,49 @@ void deleteTable()
 
          for(int i=0;i<4;i++)
          {
-             oFile<<column[i]<<'\t';
+             if(i==1)
+             {
+                 int len= column[i].length();
+                 int space=20-len;
+
+                 oFile<<column[i];
+
+                 for(int i=0;i<space;)
+                 {
+                    oFile<<'\t';
+                    i+=4;
+                 }
+             }
+
+             else
+             {
+                 oFile<<column[i];
+                 oFile<<'\t';
+             }
          }
 
          oFile<<endl;
 
          for(int i=0;i<index-1;i++)
          {
-             if(i!=gotValue)oFile<<s[i].ID<<'\t'<<s[i].name<<'\t'<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
+             if(i!=gotValue)
+             {
+                int len=(s[i].name).length();
+                int space=20-len;
 
+                oFile<< s[i].ID<<'\t'<<s[i].name;
+
+                for(int i=0;i<space;)
+                {
+                    oFile<<'\t';
+                    i+=4;
+                }
+
+                oFile<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
+             }
          }
 
          oFile.close();
-
      }
 
      else cout<<s3<<" Doesn't Exist. Can't perform the deletion "<<endl;
@@ -308,7 +338,7 @@ void updateTable()
                         int x;
                         istringstream iss;
                         iss>>keyValue;
-                        iss(x);
+                        iss<<x;
                         s[j].ID=x;
                     }*/
 
@@ -345,14 +375,45 @@ void updateTable()
 
          for(int i=0;i<4;i++)
          {
-             oFile<<column[i]<<'\t';
+             if(i==1)
+             {
+                 int len= column[i].length();
+                 int space=20-len;
+
+                 oFile<<column[i];
+
+                 for(int i=0;i<space;)
+                 {
+                    oFile<<'\t';
+                    i+=4;
+                 }
+             }
+
+             else
+             {
+                 oFile<<column[i];
+                 oFile<<'\t';
+             }
          }
 
          oFile<<endl;
 
+
          for(int i=0;i<index-1;i++)
          {
-             oFile<<s[i].ID<<'\t'<<s[i].name<<'\t'<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
+
+             int len=(s[i].name).length();
+             int space=20-len;
+
+             oFile<< s[i].ID<<'\t'<<s[i].name;
+
+             for(int i=0;i<space;)
+             {
+               oFile<<'\t';
+               i+=4;
+             }
+
+             oFile<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
          }
 
          oFile.close();
