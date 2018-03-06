@@ -153,46 +153,7 @@ void insertTable( )
 
             //cout<<index<<endl;
      }
-         /* while(cin>>s6)
-          {
 
-                if(s6==")") break;
-                c++;
-             if(c==1 || c==3)
-             {
-                 oFile<<s6<<'\t';
-                 if(c==1){
-                    s[index].ID=s6;
-                }
-                else
-                {
-                    s[index].roll=s6;
-                }
-             }
-
-             else
-             {
-                oFile<<s6;
-                if(c==2)s[index].name=s6;
-                else s[index].email=s6;
-                int len=s6.length();
-                int space=20-len;
-
-                for(int i=0;i<space;)
-                {
-                    oFile<<'\t';
-                    i+=4;
-                }
-             }
-
-
-
-             }
-
-           oFile<<endl;
-
-     }
-*/
      else cout<<s3<<" Doesn't Exist. "<<endl;
 
 
@@ -205,7 +166,7 @@ void insertTable( )
 
 }
 
-void deleteTable(int index)
+void deleteTable()
 {
      fstream oFile,iFile;
      string input,col;
@@ -227,6 +188,12 @@ void deleteTable(int index)
          }
 
          int gotValue;
+         int index;\
+         fstream iNumFile;
+
+         iNumFile.open("num.dat", ios::in);
+         iNumFile>>index;
+         iNumFile.close();
 
          if(targetIndex==0)
          {
@@ -238,7 +205,7 @@ void deleteTable(int index)
                     else cout<<"Invalid index"<<endl;
              }
 
-          }
+         }
 
          iFile.close();
          oFile.close();
@@ -272,6 +239,22 @@ void deleteTable(int index)
 
 }
 
+void readStruct()
+{
+        fstream iNumFile;
+        int index;
+
+        iNumFile.open("num.dat", ios::in);
+        iNumFile>>index;
+        iNumFile.close();
+        cout<<index<<endl;
+        for(int i=0;i<index;i++)
+        {
+            cout<<s[i].ID<<'\t'<<s[i].name<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
+        }
+
+}
+
 
 int main()
 {
@@ -283,7 +266,7 @@ int main()
 
     fstream iNumFile;
 
- iNumFile.open("num.dat", ios::app);
+     iNumFile.open("num.dat", ios::app);
      iNumFile<<init<<endl;
      iNumFile.close();
 
@@ -309,14 +292,10 @@ int main()
         {
             cin>>s2>>s3>>where>>key>>s4>>keyValue>>sem;
 
-            deleteTable(indexp);
+            deleteTable();
         }
 
-
-       /* for(int i=0;i<indexp;i++)
-        {
-            cout<<s[i].ID<<'\t'<<s[i].name<<endl;
-        }*/
+        readStruct();
 
 	return 0;
 }
