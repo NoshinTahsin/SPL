@@ -43,6 +43,45 @@ void readDatFile()
 
 }
 
+void readInfo()
+{
+    fstream iFile;
+    iFile.open("info.dat", ios::in | ios::out);
+
+    if(iFile.is_open())
+    {
+        string input;
+        while(getline(iFile,input))
+        {
+            cout<<input<<endl;
+        }
+    }
+
+    cout<<endl;
+
+    iFile.close();
+
+}
+
+void readNum()
+{
+    fstream iFile;
+    iFile.open("num.dat", ios::in | ios::out);
+
+    if(iFile.is_open())
+    {
+        string input;
+        while(getline(iFile,input))
+        {
+            cout<<input<<endl;
+        }
+    }
+
+    cout<<endl;
+
+    iFile.close();
+}
+
 void createTable()
 {
     fstream oFile;
@@ -50,7 +89,7 @@ void createTable()
     int sem;
 
     oFile.open("database.dat", ios::app);
-    oFile.open("info.dat", ios::app);
+    //oFile.open("info.dat", ios::app);
 
     if(s1=="CREATE")oFile<< s3<<endl<<endl;
 
@@ -128,8 +167,9 @@ void insertTable( )
      string tableName=s3;
      int numRows=write;
 
+     remove("info.dat");
      iInfo.open("info.dat", ios::app);
-     iInfo<<tableName<<'\t'<<numRows<<'\t'<<4<<'\t'<<endl;
+     iInfo<<tableName<<'\t'<<numRows<<" rows"<<'\t'<<4<<" columns"<<'\t'<<endl;
      iInfo.close();
 
 
@@ -164,6 +204,8 @@ void insertTable( )
      oFile.close();
 
      readDatFile();
+     readInfo();
+     readNum();
 }
 
 void deleteTable()
