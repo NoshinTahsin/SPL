@@ -50,6 +50,7 @@ void createTable()
     int sem;
 
     oFile.open("database.dat", ios::app);
+    oFile.open("info.dat", ios::app);
 
     if(s1=="CREATE")oFile<< s3<<endl<<endl;
 
@@ -59,6 +60,9 @@ void createTable()
         while(s4!=")")
         {
             cnt++;
+           // numRow++;
+
+
             if(s5=="int")
             {
                 oFile<<s4<<'\t';
@@ -97,7 +101,7 @@ void insertTable( )
 
      int index;
 
-     fstream oNumFile,iNumFile;
+     fstream oNumFile,iInfo,iNumFile;
 
      iNumFile.open("num.dat", ios::in);
      iNumFile>>index;
@@ -120,6 +124,16 @@ void insertTable( )
      iFile.open("database.dat", ios::in);
 
      iFile>>input;
+
+     string tableName=s3;
+     int numRows=write;
+
+     iInfo.open("info.dat", ios::app);
+     iInfo<<tableName<<'\t'<<numRows<<'\t'<<4<<'\t'<<endl;
+     iInfo.close();
+
+
+
 
      if(input==s3)
      {
