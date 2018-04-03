@@ -1,4 +1,4 @@
-#include<iostream>
+ #include<iostream>
 #include<fstream>
 #include<sstream>
 
@@ -11,17 +11,6 @@ struct Student
     int roll;
     string email;
 };
-
-int cnt=0,c=0;
-
-int ID,roll;
-string name,email;
-string s1,s2,s3,s4,s5;
-string column[10];
-string key;
-string colName,cId;
-int in;
-int keyValue;
 
 void readDatFile()
 {
@@ -82,55 +71,195 @@ void readNum()
     iFile.close();
 }
 
+
 void createTable()
 {
     fstream oFile;
 
     int sem;
+    int numOfTables;
 
-    oFile.open("database.dat", ios::app);
+    iInfo.open("info.dat", ios::app);
+    iInfo>>numOfTables;
+    iInfo.close();
+    int g=0;
+
+    if(numOfTables==0)       //for the first table entry
+    {
+
+        remove("info.dat");
+
+        iInfo.open("info.dat", ios::app);
+        iInfo<<numOfTables+1<<endl;
+        iInfo<<s3<<'\t'<<g<<endl;
+        iInfo.close();
+
+        oFile.open("database.dat", ios::app);
     //oFile.open("info.dat", ios::app);
 
-    if(s1=="CREATE")oFile<< s3<<endl<<endl;
+        if(s1=="CREATE")oFile<< s3<<endl<<endl;
 
-    if(s4=="(")
-    {
-        cin>>s4>>s5;
-        while(s4!=")")
+        if(s4=="(")
         {
-            cnt++;
-           // numRow++;
-
-
-            if(s5=="int")
+            cin>>s4>>s5;
+            while(s4!=")")
             {
-                oFile<<s4<<'\t';
-            }
-
-            else if(s5=="VARCHAR")
-            {
-                oFile<<s4;
-                int len=s4.length();
-                int space=20-len;
-
-                for(int i=0;i<space;)
+                if(s5=="int")
                 {
-                    oFile<<'\t';
-                    i+=4;
+                    oFile<<s4<<'\t';
                 }
 
-            }
+                else if(s5=="VARCHAR")
+                {
+                    oFile<<s4;
+                    int len=s4.length();
+                    int space=20-len;
 
-            cin>>s4>>s5;
+                    for(int i=0;i<space;)
+                    {
+                        oFile<<'\t';
+                        i+=4;
+                    }
+
+                }
+
+                cin>>s4>>s5;
+            }
         }
+
+        oFile<<endl;
+
+        oFile.close();
+
+        readDatFile();
+        readInfo();
+        readNum();
     }
 
-    oFile<<endl;
+    else
+    {
+        iInfo.open("info.dat", ios::app);
+        iInfo>>numOfTables;
+        iInfo.close();
 
-	oFile.close();
+        structArr(numOfTables);
 
-	readDatFile();
+        for(int i=0;i<numOfTables;i++)
+        {
+            iInfo>>strArr[i].tableName;
+            iInfo>>strArr[i].numOfRows;
+        }
 
+        remove("info.dat");
+
+        iInfo.open("info.dat", ios::app);
+        iInfo<<numOfTables+1<<endl;
+
+        for(int i=0;i<numOfTables;i++)
+        {
+            iInfo<<strArr[i].tableName<<'\t';
+            iInfo<<strArr[i].numOfRows<<endl;
+        }
+
+        int sum;
+
+        for(int i=0;i<numOfTables;i++)
+        {
+            sum+=strArr[i].numOfRows;
+        }
+
+        createRowArr(sum);
+
+        int g=0;
+        iInfo<<s3<<'\t'<<g<<endl;
+        iInfo.close();
+
+        int str=0;
+
+        for(int i=0;i<numOfTables;i++)
+        {
+            iFile>>tableName;
+            getLine(iFile,s);
+
+            for(int j=str;j<strArr[i].numOfRows;j++)
+            {
+                iFile>>rowArr[j].ID;
+                iFile>>rowArr[j].name;
+                iFile>>rowArr[j].roll;
+                iFile>>rowArr[j].email;
+            }
+
+            str=j;
+        }
+
+        remove("database.dat");
+
+
+        for(int i=0;i<numOfTables;i++)
+        {
+            iFile<<strArr[i].tableName<<endl;
+
+            int str=0;
+
+            for(int j=str;j<strArr[i].numOfRows;j++)
+            {
+                int len=(rowArr[j].name).length();
+                int space=20-len;
+
+                iFile<<rowArr[j].ID<<'\t'<<rowArr[j].name;
+
+                for(int k=0;k<space;)
+                {
+                    iFile<<'\t';
+                    k+=4;
+                }
+
+                iFile<<rowArr[j].roll<<'\t'<<rowArr[j].email<<'\t'<<endl;
+
+                str=j;
+             }
+         }
+
+        oFile.open("database.dat", ios::app);
+    //oFile.open("info.dat", ios::app);
+
+        if(s1=="CREATE")oFile<< s3<<endl<<endl;
+
+        if(s4=="(")
+        {
+            cin>>s4>>s5;
+            while(s4!=")")
+            {
+                if(s5=="int")
+                {
+                    oFile<<s4<<'\t';
+                }
+
+                else if(s5=="VARCHAR")
+                {
+                    oFile<<s4;
+                    int len=s4.length();
+                    int space=20-len;
+
+                    for(int i=0;i<space;)
+                    {
+                        oFile<<'\t';
+                        i+=4;
+                    }
+
+                }
+
+                cin>>s4>>s5;
+            }
+        }
+
+        oFile<<endl;
+
+        oFile.close();
+
+        readDatFile();
+        readInfo();
+        readNum();
 }
 
 void insertTable( )
@@ -165,11 +294,11 @@ void insertTable( )
      iFile>>input;
 
      string tableName=s3;
-     int numRows=write;
+      numRows=write;
 
      remove("info.dat");
      iInfo.open("info.dat", ios::app);
-     iInfo<<tableName<<'\t'<<numRows<<" rows"<<'\t'<<4<<" columns"<<'\t'<<endl;
+     iInfo<<tableName<<'\t'<<numRows<<'\t'<<4<<'\t'<<endl;
      iInfo.close();
 
 
@@ -208,294 +337,27 @@ void insertTable( )
      readNum();
 }
 
-void deleteTable()
-{
-     fstream oFile,iFile;
-     string input,col;
-
-     oFile.open("database.dat", ios::app);
-     iFile.open("database.dat", ios::in);
-
-     iFile>>input;
-     int targetIndex;
-     int col1,col3;
-     string col2,col4;
-
-     if(input==s3)
-     {
-         for(int i=0;i<4;i++)
-         {
-            iFile>>col;
-            column[i]=col;
-            if(column[i]==key)targetIndex=i;
-         }
-
-         int gotValue;
-         int index;
-
-         fstream iNumFile;
-
-         iNumFile.open("num.dat", ios::in);
-         iNumFile>>index;
-         iNumFile.close();
-
-         Student *s = new Student[index];
-
-         iFile>>col1>>col2>>col3>>col4;
-
-         for(int j=0;j<index;j++)
-         {
-              s[j].ID=col1;
-              s[j].name=col2;
-              s[j].roll=col3;
-              s[j].email=col4;
-
-              iFile>>col1>>col2>>col3>>col4;
-
-         }
-
-         cout<<index<<endl;
-
-         for(int i=0;i<index;i++)
-         {
-            cout<<s[i].ID<<'\t'<<s[i].name<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
-         }
-
-         if(targetIndex==0)
-         {
-             //cout<<"Index is : "<<index<<endl;
-             for(int j=0;j<index-1;j++)
-             {
-                 if(s[j].ID==keyValue)gotValue=j;
-                    else cout<<"Invalid index"<<endl;
-             }
-         }
-
-         iFile.close();
-         oFile.close();
-
-         remove("database.dat");
-
-         oFile.open("database.dat", ios::app);
-
-         oFile<<input<<endl;
-
-         for(int i=0;i<4;i++)
-         {
-             if(i==1)
-             {
-                 int len= column[i].length();
-                 int space=20-len;
-
-                 oFile<<column[i];
-
-                 for(int i=0;i<space;)
-                 {
-                    oFile<<'\t';
-                    i+=4;
-                 }
-             }
-
-             else
-             {
-                 oFile<<column[i];
-                 oFile<<'\t';
-             }
-         }
-
-         oFile<<endl;
-
-         for(int i=0;i<index-1;i++)
-         {
-             if(i!=gotValue)
-             {
-                int len=(s[i].name).length();
-                int space=20-len;
-
-                oFile<< s[i].ID<<'\t'<<s[i].name;
-
-                for(int i=0;i<space;)
-                {
-                    oFile<<'\t';
-                    i+=4;
-                }
-
-                oFile<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
-             }
-         }
-
-         oFile.close();
-     }
-
-     else cout<<s3<<" Doesn't Exist. Can't perform the deletion "<<endl;
-
-     readDatFile();
-
-}
-
-void updateTable()
-{
-     fstream oFile,iFile;
-     string input,col;
-
-     oFile.open("database.dat", ios::app);
-     iFile.open("database.dat", ios::in);
-
-     iFile>>input;
-     int targetIndex;
-     int col1,col3;
-     string col2,col4;
-
-     if(input==s3)
-     {
-         for(int i=0;i<4;i++)
-         {
-            iFile>>col;
-            column[i]=col;
-            if(column[i]==colName)targetIndex=i;
-         }
-
-         int gotValue;
-         int index;
-
-         fstream iNumFile;
-
-         iNumFile.open("num.dat", ios::in);
-         iNumFile>>index;
-         iNumFile.close();
-
-         Student *s = new Student[index];
-
-         iFile>>col1>>col2>>col3>>col4;
-
-         for(int j=0;j<index;j++)
-         {
-              s[j].ID=col1;
-              s[j].name=col2;
-              s[j].roll=col3;
-              s[j].email=col4;
-
-              iFile>>col1>>col2>>col3>>col4;
-
-         }
-
-         for(int i=0;i<index;i++)
-         {
-            cout<<s[i].ID<<'\t'<<s[i].name<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
-         }
-
-            //cout<<"Index is : "<<index<<endl;
-             for(int j=0;j<index-1;j++)
-             {
-                 if(s[j].ID==in)
-                 {
-                    /*if(targetIndex==0)
-                    {
-                        int x;
-                        istringstream iss;
-                        iss>>keyValue;
-                        iss<<x;
-                        s[j].ID=x;
-                    }*/
-
-                    if(targetIndex==1)
-                    {
-                        s[j].name=keyValue;
-                    }
-
-                    /*else if(targetIndex==2)
-                    {
-                        int x;
-                        istringstream iss(keyValue);
-                        iss<<x;
-                        s[j].roll=x;
-                    }*/
-
-                    else if(targetIndex==4)
-                    {
-                        s[j].email=keyValue;
-                    }
-                 }
-
-                 else cout<<"Invalid index"<<endl;
-             }
-
-         iFile.close();
-         oFile.close();
-
-         remove("database.dat");
-
-         oFile.open("database.dat", ios::app);
-
-         oFile<<input<<endl;
-
-         for(int i=0;i<4;i++)
-         {
-             if(i==1)
-             {
-                 int len= column[i].length();
-                 int space=20-len;
-
-                 oFile<<column[i];
-
-                 for(int i=0;i<space;)
-                 {
-                    oFile<<'\t';
-                    i+=4;
-                 }
-             }
-
-             else
-             {
-                 oFile<<column[i];
-                 oFile<<'\t';
-             }
-         }
-
-         oFile<<endl;
-
-
-         for(int i=0;i<index-1;i++)
-         {
-
-             int len=(s[i].name).length();
-             int space=20-len;
-
-             oFile<< s[i].ID<<'\t'<<s[i].name;
-
-             for(int i=0;i<space;)
-             {
-               oFile<<'\t';
-               i+=4;
-             }
-
-             oFile<<s[i].roll<<'\t'<<s[i].email<<'\t'<<endl;
-         }
-
-         oFile.close();
-
-     }
-
-     else cout<<s3<<" Doesn't Exist. Can't perform the deletion "<<endl;
-
-     readDatFile();
-
-}
 
 int main()
 {
-    string where,sem;
-    int indexp=0;
-    int init=1;
+    int init=0;
+    cout<<"Enter command : "<<endl;
+    cin>>s1;
 
     fstream iNumFile;
+    fstream iInfo;
 
     iNumFile.open("num.dat", ios::app);
     iNumFile<<init<<endl;
+    iNumFile.close
+
+    iNumFile.open("num.dat", ios::app);
+    iNumFile>>init;
     iNumFile.close();
 
-    cout<<"Enter command : "<<endl;
-    cin>>s1;
+    iInfo.open("info.dat", ios::app);
+    iInfo<<init;
+    iInfo.close();
 
 
     if(s1=="CREATE")
@@ -510,17 +372,7 @@ int main()
         insertTable();
     }
 
-    else if(s1=="DELETE")
-    {
-        cin>>s2>>s3>>where>>key>>s4>>keyValue>>sem;
-        deleteTable();
-    }
+    return 0;
 
-    else if(s1=="UPDATE")
-    {
-        cin>>s3>>s2>>colName>>s4>>keyValue>>where>>cId>>s5>> in>>sem;
-        updateTable();
-    }
-
-	return 0;
 }
+
