@@ -4,6 +4,8 @@
 
 using namespace std;
 
+string s3,s4,s5,s1;
+
 struct Student
 {
     int ID;
@@ -11,6 +13,25 @@ struct Student
     int roll;
     string email;
 };
+
+struct Array
+{
+    string tableName;
+    int numOfRows;
+};
+
+Array *strArr;
+Student *rowArr;
+
+void structArr(int n)
+{
+    strArr = new Array[n];
+}
+
+void createRowArr(int n)
+{
+    rowArr = new Student[n];
+}
 
 void readDatFile()
 {
@@ -74,7 +95,7 @@ void readNum()
 
 void createTable()
 {
-    fstream oFile;
+    fstream iInfo,oFile;
 
     int sem;
     int numOfTables;
@@ -175,13 +196,19 @@ void createTable()
         iInfo.close();
 
         int str=0;
+        string tableName,s;
+
+        fstream iFile;
+        iFile.open("database.dat", ios::app);
 
         for(int i=0;i<numOfTables;i++)
         {
             iFile>>tableName;
-            getLine(iFile,s);
+            getline(iFile,s);
 
-            for(int j=str;j<strArr[i].numOfRows;j++)
+            int j;
+
+            for(j=str;j<strArr[i].numOfRows;j++)
             {
                 iFile>>rowArr[j].ID;
                 iFile>>rowArr[j].name;
@@ -262,7 +289,7 @@ void createTable()
         readNum();
 }
 
-void insertTable( )
+void insertTable()
 {
      string s6,s7,s8,s9,input;
      int i1,i2;
@@ -301,9 +328,6 @@ void insertTable( )
      iInfo<<tableName<<'\t'<<numRows<<'\t'<<4<<'\t'<<endl;
      iInfo.close();
 
-
-
-
      if(input==s3)
      {
           cin>>i1>>s6>>s7>>i2>>s8>>s9;
@@ -335,8 +359,8 @@ void insertTable( )
      readDatFile();
      readInfo();
      readNum();
-}
 
+}
 
 int main()
 {
@@ -371,6 +395,8 @@ int main()
         cin>>s2>>s3>>s4>>s5;
         insertTable();
     }
+
+    else cout<<"j"<<endl;
 
     return 0;
 
