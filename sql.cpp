@@ -161,7 +161,6 @@ void createTable()
     {
         iInfo.open("info.dat", ios::app);
         iInfo>>numOfTables;
-        iInfo.close();
 
         structArr(numOfTables);
 
@@ -170,6 +169,8 @@ void createTable()
             iInfo>>strArr[i].tableName;
             iInfo>>strArr[i].numOfRows;
         }
+
+        iInfo.close();
 
         remove("info.dat");
 
@@ -219,8 +220,11 @@ void createTable()
             str=j;
         }
 
+        iFile.close();
+
         remove("database.dat");
 
+        iFile.open("database.dat", ios::app);
 
         for(int i=0;i<numOfTables;i++)
         {
@@ -247,10 +251,7 @@ void createTable()
              }
          }
 
-        oFile.open("database.dat", ios::app);
-    //oFile.open("info.dat", ios::app);
-
-        if(s1=="CREATE")oFile<< s3<<endl<<endl;
+        if(s1=="CREATE")iFile<< s3<<endl<<endl;
 
         if(s4=="(")
         {
@@ -259,18 +260,18 @@ void createTable()
             {
                 if(s5=="int")
                 {
-                    oFile<<s4<<'\t';
+                    iFile<<s4<<'\t';
                 }
 
                 else if(s5=="VARCHAR")
                 {
-                    oFile<<s4;
+                    iFile<<s4;
                     int len=s4.length();
                     int space=20-len;
 
                     for(int i=0;i<space;)
                     {
-                        oFile<<'\t';
+                        iFile<<'\t';
                         i+=4;
                     }
 
@@ -280,86 +281,13 @@ void createTable()
             }
         }
 
-        oFile<<endl;
+        iFile<<endl;
 
-        oFile.close();
+        iFile.close();
 
         readDatFile();
         readInfo();
         readNum();
-}
-
-void insertTable()
-{
-     string s6,s7,s8,s9,input;
-     int i1,i2;
-
-     int index;
-
-     fstream oNumFile,iInfo,iNumFile;
-
-     iNumFile.open("num.dat", ios::in);
-     iNumFile>>index;
-     iNumFile.close();
-
-     //cout<<index<<endl;
-
-     int write = index+1;
-
-     remove("num.dat");
-
-     oNumFile.open("num.dat", ios::app);
-     oNumFile<<write<<endl;
-     oNumFile.close();
-
-     fstream oFile,iFile;
-
-     oFile.open("database.dat", ios::app);
-
-     iFile.open("database.dat", ios::in);
-
-     iFile>>input;
-
-     string tableName=s3;
-      numRows=write;
-
-     remove("info.dat");
-     iInfo.open("info.dat", ios::app);
-     iInfo<<tableName<<'\t'<<numRows<<'\t'<<4<<'\t'<<endl;
-     iInfo.close();
-
-     if(input==s3)
-     {
-          cin>>i1>>s6>>s7>>i2>>s8>>s9;
-
-          int len=s7.length();
-          int space=20-len;
-
-          oFile<< i1<<'\t'<<s7;
-
-          for(int i=0;i<space;)
-          {
-              oFile<<'\t';
-              i+=4;
-          }
-
-          oFile<<i2<<'\t'<<s9;
-
-          oFile<<endl;
-
-     }
-
-     else cout<<endl<<s3<<" Doesn't Exist. "<<endl;
-
-     cout<<endl;
-
-     iFile.close();
-     oFile.close();
-
-     readDatFile();
-     readInfo();
-     readNum();
-
 }
 
 int main()
@@ -399,6 +327,5 @@ int main()
     else cout<<"j"<<endl;
 
     return 0;
-
 }
 
