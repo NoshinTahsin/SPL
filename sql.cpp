@@ -1,4 +1,4 @@
-#include<iostream>
+ #include<iostream>
 #include<fstream>
 #include<sstream>
 
@@ -149,12 +149,7 @@ void createTable()
         }
 
         oFile<<endl;
-
         oFile.close();
-
-        readDatFile();
-        readInfo();
-        readNum();
     }
 
     else
@@ -284,11 +279,11 @@ void createTable()
         iFile<<endl;
 
         iFile.close();
-
-        readDatFile();
-        readInfo();
-        readNum();
     }
+
+    readDatFile();
+    readInfo();
+    readNum();
 }
 
 void insertTable()
@@ -298,7 +293,7 @@ void insertTable()
 
      int index;
 
-     fstream iInfo,oFile;
+     fstream iInfo,oFile,iFile;
 
      int sem;
      int numOfTables;
@@ -320,8 +315,8 @@ void insertTable()
 
           structArr(numOfTables);
 
-          iInfo>>structArr[0].tableName;
-          iInfo>>structArr[0].numOfRows;
+          iInfo>>strArr[0].tableName;
+          iInfo>>strArr[0].numOfRows;
 
           iInfo.close();
 
@@ -329,7 +324,7 @@ void insertTable()
 
           iInfo.open("info.dat", ios::app);
           iInfo<<numOfTables;
-          iInfo<<structArr[0].tableName<<" "<<(structArr[0].numOfRows)+1<<endl;
+          iInfo<<strArr[0].tableName<<" "<<(strArr[0].numOfRows)+1<<endl;
           iInfo.close();
 
           iFile.open("database.dat", ios::in);
@@ -369,10 +364,8 @@ void insertTable()
 
      else
      {
-          /*iFile.open("database.dat", ios::in);
-          iFile>>input;
-          iFile.close();*/
-
+          int storeTableNo;
+          cin>>i1>>s6>>s7>>i2>>s8>>s9;
           iInfo.open("info.dat", ios::app);
           iInfo>>numOfTables;
 
@@ -380,9 +373,9 @@ void insertTable()
 
           for(int i=0;i<numOfTables;i++)
           {
-              iInfo>>structArr[i].tableName;
-              if(s3==structArr[i].tableName) storeTableNo=i+1;
-              iInfo>>structArr[i].numOfRows;
+              iInfo>>strArr[i].tableName;
+              if(s3==strArr[i].tableName) storeTableNo=i+1;
+              iInfo>>strArr[i].numOfRows;
           }
 
           iInfo.close();
@@ -393,8 +386,8 @@ void insertTable()
           iInfo<<numOfTables;
           for(int i=0;i<numOfTables;i++)
           {
-            if(i==storeTableNo-1)iInfo<<structArr[i].tableName<<" "<<(structArr[i].numOfRows)+1<<endl;
-                else iInfo<<structArr[i].tableName<<" "<<(structArr[i].numOfRows)+1<<endl;
+            if(i==storeTableNo-1)iInfo<<strArr[i].tableName<<" "<<(strArr[i].numOfRows)+1<<endl;
+                else iInfo<<strArr[i].tableName<<" "<<(strArr[i].numOfRows)+1<<endl;
           }
 
           iInfo.close();
@@ -402,6 +395,7 @@ void insertTable()
           if(storeTableNo==numOfTables)
           {
                 int sum;
+                string s;
 
                 for(int i=0;i<numOfTables;i++)
                 {
@@ -410,103 +404,91 @@ void insertTable()
 
                 createRowArr(sum);
 
+                oFile.open("database.dat", ios::in);
+
+//                oFile>>datNumOfTables;
+
+                int smt=0;
+                int j;
+                for(int i=0;i<numOfTables;i++)
+                {
+                    oFile>>input;
+                    getline(oFile,s);
+                    for(j=smt;j<strArr[i].numOfRows;j++)
+                    {
+                        oFile>>rowArr[j].ID>>rowArr[j].name>>rowArr[j].roll>>rowArr[j].email;
+                    }
+                }
+
+                oFile.close();
+
+                remove("database.dat");
+
+                oFile.open("database.dat", ios::in);
+
+               // oFile<<numOfRows<<endl;
+
+                int len=s7.length();
+                int space=20-len;
+
+                for(int i=0;i<numOfTables;i++)
+                {
+                    oFile<<strArr[i].tableName<<endl;
+                    oFile<<s<<endl;
+
+                    for(j=smt;j<strArr[i].numOfRows;j++)
+                    {
+                        oFile<<rowArr[j].ID<<'\t'<<rowArr[j].name;
+
+                         for(int i=0;i<space;)
+                        {
+                            oFile<<'\t';
+                            i+=4;
+                        }
+
+                        oFile<<rowArr[j].roll<<'\t'<<rowArr[j].email;
+                    }
+
+
+                }
+
+                oFile<< i1<<'\t'<<s7;
+
+                for(int i=0;i<space;)
+                {
+                    oFile<<'\t';
+                    i+=4;
+                }
+
+                oFile<<i2<<'\t'<<s9;
+
+                oFile<<endl;
+
+
+                oFile.close();
+
+
           }
-
-
-
-
-
-
-
-
-
-
-
-
 
      }
 
 
+    readDatFile();
+    readInfo();
+    readNum();
 
-
-
-
-     //cout<<index<<endl;
-
-     int write = index+1;
-
-     remove("num.dat");
-
-     oNumFile.open("num.dat", ios::app);
-     oNumFile<<write<<endl;
-     oNumFile.close();
-
-     fstream oFile,iFile;
-
-     oFile.open("database.dat", ios::app);
-
-     iFile.open("database.dat", ios::in);
-
-     iFile>>input;
-
-     string tableName=s3;
-      numRows=write;
-
-     remove("info.dat");
-     iInfo.open("info.dat", ios::app);
-     iInfo<<tableName<<'\t'<<numRows<<'\t'<<4<<'\t'<<endl;
-     iInfo.close();
-
-     if(input==s3)
-     {
-          cin>>i1>>s6>>s7>>i2>>s8>>s9;
-
-          int len=s7.length();
-          int space=20-len;
-
-          oFile<< i1<<'\t'<<s7;
-
-          for(int i=0;i<space;)
-         {
-             oFile<<'\t';
-              i+=4;
-          }
-
-          oFile<<i2<<'\t'<<s9;
-
-          oFile<<endl;
-
-     }
-
-     else cout<<endl<<s3<<" Doesn't Exist. "<<endl;
-
-     cout<<endl;
-
-     iFile.close();
-     oFile.close();
-
-     readDatFile();
-     readInfo();
-     readNum();
 
 }
 
 int main()
 {
+    string s2;
     int init=0;
     cout<<"Enter command : "<<endl;
     cin>>s1;
 
     fstream iNumFile;
     fstream iInfo;
-
-    iNumFile.open("num.dat", ios::app);
-    iNumFile<<init<<endl;
-    iNumFile.close;
-
-    iNumFile.open("num.dat", ios::app);
-    iNumFile>>init;
-    iNumFile.close();
 
     iInfo.open("info.dat", ios::app);
     iInfo<<init;
@@ -529,4 +511,5 @@ int main()
 
     return 0;
 }
+
 
