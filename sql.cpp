@@ -100,7 +100,7 @@ void createTable()
     int sem;
     int numOfTables;
 
-    iInfo.open("info.dat", ios::app);
+    iInfo.open("info.dat", ios::in);
     iInfo>>numOfTables;
     iInfo.close();
     int g=0;
@@ -154,7 +154,7 @@ void createTable()
 
     else
     {
-        iInfo.open("info.dat", ios::app);
+        iInfo.open("info.dat", ios::in);
         iInfo>>numOfTables;
 
         structArr(numOfTables);
@@ -195,7 +195,7 @@ void createTable()
         string tableName,s;
 
         fstream iFile;
-        iFile.open("database.dat", ios::app);
+        iFile.open("database.dat", ios::in);
 
         for(int i=0;i<numOfTables;i++)
         {
@@ -298,7 +298,7 @@ void insertTable()
      int sem;
      int numOfTables;
 
-     iInfo.open("info.dat", ios::app);
+     iInfo.open("info.dat", ios::in);
      iInfo>>numOfTables;
      iInfo.close();
      int g=0;
@@ -310,7 +310,7 @@ void insertTable()
 
      else if(numOfTables==1)
      {
-          iInfo.open("info.dat", ios::app);
+          iInfo.open("info.dat", ios::in);
           iInfo>>numOfTables;
 
           structArr(numOfTables);
@@ -366,7 +366,7 @@ void insertTable()
      {
           int storeTableNo;
           cin>>i1>>s6>>s7>>i2>>s8>>s9;
-          iInfo.open("info.dat", ios::app);
+          iInfo.open("info.dat", ios::in);
           iInfo>>numOfTables;
 
           structArr(numOfTables);
