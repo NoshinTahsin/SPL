@@ -1,4 +1,4 @@
-  #include<iostream>
+#include<iostream>
 #include<fstream>
 #include<sstream>
 
@@ -21,7 +21,8 @@ struct Array
 };
 
 Array *strArr;
-Student *rowArr;
+ Student *rowArr;
+//string *rowArr;
 
 void structArr(int n)
 {
@@ -30,7 +31,8 @@ void structArr(int n)
 
 void createRowArr(int n)
 {
-    rowArr = new Student[n];
+     rowArr = new Student[n];
+  // rowArr=new string[n];
 }
 
 void readDatFile()
@@ -162,7 +164,9 @@ void createTable()
         for(int i=0;i<numOfTables;i++)
         {
             iInfo>>strArr[i].tableName;
+            //cout<<strArr[i].tableName<<endl;
             iInfo>>strArr[i].numOfRows;
+            //cout<<strArr[i].numOfRows<<endl;
         }
 
         iInfo.close();
@@ -203,13 +207,22 @@ void createTable()
             getline(iFile,s);
 
             int j;
-
+            string lol;
             for(j=str;j<strArr[i].numOfRows;j++)
             {
-                iFile>>rowArr[j].ID;
+               iFile>>rowArr[j].ID;
+                cout<<rowArr[j].ID<<endl;
                 iFile>>rowArr[j].name;
+                cout<<rowArr[j].name<<endl;
                 iFile>>rowArr[j].roll;
+                cout<<rowArr[j].roll<<endl;
                 iFile>>rowArr[j].email;
+                cout<<rowArr[j].email<<endl;
+
+                //getline(iFile,lol);
+               // cout<<lol<<endl;
+
+                //rowArr[j]=lol;
             }
 
             str=j;
@@ -229,7 +242,7 @@ void createTable()
 
             for(int j=str;j<strArr[i].numOfRows;j++)
             {
-                int len=(rowArr[j].name).length();
+               int len=(rowArr[j].name).length();
                 int space=20-len;
 
                 iFile<<rowArr[j].ID<<'\t'<<rowArr[j].name;
@@ -241,6 +254,8 @@ void createTable()
                 }
 
                 iFile<<rowArr[j].roll<<'\t'<<rowArr[j].email<<'\t'<<endl;
+
+                //iFile<<rowArr[j]<<endl;
 
                 str=j;
              }
@@ -387,7 +402,7 @@ void insertTable()
           for(int i=0;i<numOfTables;i++)
           {
             if(i==storeTableNo-1)iInfo<<strArr[i].tableName<<" "<<(strArr[i].numOfRows)+1<<endl;
-                else iInfo<<strArr[i].tableName<<" "<<(strArr[i].numOfRows)+1<<endl;
+                else iInfo<<strArr[i].tableName<<" "<<(strArr[i].numOfRows)<<endl;
           }
 
           iInfo.close();
@@ -407,7 +422,7 @@ void insertTable()
                 oFile.open("database.dat", ios::in);
 
 //                oFile>>datNumOfTables;
-
+                string lol;
                 int smt=0;
                 int j;
                 for(int i=0;i<numOfTables;i++)
@@ -416,15 +431,29 @@ void insertTable()
                     getline(oFile,s);
                     for(j=smt;j<strArr[i].numOfRows;j++)
                     {
-                        oFile>>rowArr[j].ID>>rowArr[j].name>>rowArr[j].roll>>rowArr[j].email;
+                       /*  getline(oFile,lol);
+                         cout<<lol<<endl;
+                         rowArr[j]=lol;*/
+
+                         iFile>>rowArr[j].ID;
+               // cout<<rowArr[j].ID<<endl;
+                iFile>>rowArr[j].name;
+               // cout<<rowArr[j].name<<endl;
+                iFile>>rowArr[j].roll;
+               // cout<<rowArr[j].roll<<endl;
+                iFile>>rowArr[j].email;
+               // cout<<rowArr[j].email<<endl;
+
                     }
+
+                    smt=j;
                 }
 
                 oFile.close();
 
                 remove("database.dat");
 
-                oFile.open("database.dat", ios::in);
+                oFile.open("database.dat", ios::app);
 
                // oFile<<numOfRows<<endl;
 
@@ -434,7 +463,7 @@ void insertTable()
                 for(int i=0;i<numOfTables;i++)
                 {
                     oFile<<strArr[i].tableName<<endl;
-                    oFile<<s<<endl;
+                     oFile<<s<<endl;
 
                     for(j=smt;j<strArr[i].numOfRows;j++)
                     {
@@ -447,6 +476,8 @@ void insertTable()
                         }
 
                         oFile<<rowArr[j].roll<<'\t'<<rowArr[j].email;
+
+                       // oFile<<rowArr[j]<<endl;
                     }
 
 
