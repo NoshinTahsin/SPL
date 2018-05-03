@@ -1,0 +1,25 @@
+CREATE TABLE table2 (
+ID int
+NAME VARCHAR
+ROLL int
+EMAIL VARCHAR
+) ;
+
+CREATE TABLE table2 ( ID int NAME VARCHAR ROLL int EMAIL VARCHAR ) ;
+
+INSERT INTO table1
+values ( 2 , name1, 901 , 1@gmail.com )
+
+INSERT INTO table3
+values ( 2 , name2, 902 , 2@gmail.com )
+
+INSERT INTO table4
+values ( 3 , name3, 903 , 3@gmail.com )
+
+INSERT INTO table2 values ( 4 , name4, 904 , 4@gmail.com )
+
+INSERT INTO table2
+values ( 5 , name5, 905 , 5@gmail.com )
+
+INSERT INTO table2
+values ( 6 , name6, 906 , 6@gmail.com )

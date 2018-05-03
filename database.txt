@@ -1,0 +1,7 @@
+table1
+
+ID	NAME				ROLL	EMAIL				
+2	name1,				901	1@gmail.com
+table2
+
+ID	NAME				ROLL	EMAIL				
