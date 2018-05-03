@@ -1,7 +1,8 @@
 table1
-
 ID	NAME				ROLL	EMAIL				
+1	name1,				901	1@gmail.com
 2	name1,				901	1@gmail.com
+3	name1,				901	1@gmail.com
 table2
 
 ID	NAME				ROLL	EMAIL				

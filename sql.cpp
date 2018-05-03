@@ -229,18 +229,24 @@ void createTable()
         for(int i=0;i<numOfTables;i++)
         {
             dFile>>tableName;
+            getline(dFile,s);
+           // getline(dFile,s);
+            getline(dFile,s);
             //doFile<<tableName<<endl;
             getline(dFile,header);
             //doFile<<header<<endl; //headers
-            getline(dFile,s);
+          //  getline(dFile,s);
+         // getline(dFile,s);
 
             while(idx!=strArr[i].numOfRows)
             {
                 getline(dFile,stringArr[idx]);
                 //doFile<<stringArr[idx++]<<endl;
                 cout<<endl<<endl<<"stringArr[idx++] : "<<stringArr[idx]<<endl<<endl;
-                getline(dFile,s);
+                //getline(dFile,s);
+                //cout<<" kkkkkkkkkkkkkk       "<<s<<endl;
                 idx++;
+              //  cout<<"hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm"<<endl;
             }
 
 
@@ -296,7 +302,7 @@ void createTable()
             int str=0;
             aFile<<header<<endl;
             int j;
-            for(j=str;j<strArr[i].numOfRows;j++)
+            for(j=0;j<3;j++)
             {
                 aFile<<stringArr[j]<<endl;
 
@@ -321,7 +327,7 @@ void createTable()
 
              }
 
-             str=j;
+           // str=j;
          }
 
         if(s1=="CREATE")aFile<< s3<<endl<<endl;
