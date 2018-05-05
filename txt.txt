@@ -8,10 +8,19 @@ EMAIL VARCHAR
 CREATE TABLE table2 ( ID int NAME VARCHAR ROLL int EMAIL VARCHAR ) ;
 
 INSERT INTO table1
+values ( 1 , name1, 901 , 1@gmail.com )
+
+INSERT INTO table1
+values ( 2 , name1, 901 , 1@gmail.com )
+
+INSERT INTO table1
 values ( 3 , name1, 901 , 1@gmail.com )
 
-INSERT INTO table3
-values ( 6 , name2, 902 , 2@gmail.com )
+INSERT INTO table2
+values ( 4 , name2, 902 , 2@gmail.com )
+
+INSERT INTO table2
+values ( 5 , name2, 902 , 2@gmail.com )
 
 INSERT INTO table4
 values ( 3 , name3, 903 , 3@gmail.com )
