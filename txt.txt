@@ -1,3 +1,8 @@
+SELECT NAME ROLL
+FROM table2
+
+SELECT * FROM table3
+
 DELETE FROM table2 WHERE ID = 3
 
 UPDATE table3 WHERE ID = 4

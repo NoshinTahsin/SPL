@@ -1,7 +1,3 @@
-Inserted at the end of any table.
+SELECT command implemented for whole table
 
-Creation Insertion Deletion Update Done
-
-Multiple Table Handled
-
-Next target SELECT operation.
+next target select specific columns
