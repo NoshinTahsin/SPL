@@ -1,3 +1,4 @@
-SELECT command implemented for whole table
+SELECT operation completed 
 
-next target select specific columns
+next target is creating a select-record
+to keep records of SELECT operation 
