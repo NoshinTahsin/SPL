@@ -3,24 +3,27 @@ table1
 ID	NAME				ROLL	EMAIL				
 
 1	name1,				901	1@gmail.com
+2	name1,				901	1@gmail.com
 3	name1,				901	1@gmail.com
+
 
 table2
 
 ID	NAME				ROLL	EMAIL				
 
-4	name2,				902	2@gmail.com
-3	update,				901	up1@gmail.com
+6	name2,				902	2@gmail.com
+7	name2,				902	2@gmail.com
 
 table3
 
 ID	NAME				ROLL	EMAIL				
 
 8	name2,				902	2@gmail.com
+9	name2,				902	2@gmail.com
 10	name2,				902	2@gmail.com
 11	name2,				902	2@gmail.com
 12	name2,				902	2@gmail.com
-13	name2,				902	2@gmail.com
+13	inserted,			901	1@gmail.com
 
 table4
 
@@ -29,4 +32,4 @@ ID	NAME				ROLL	EMAIL
 14	name2,				902	2@gmail.com
 15	name2,				902	2@gmail.com
 16	name2,				902	2@gmail.com
-17	name2,				902	2@gmail.com
+ 

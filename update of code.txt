@@ -1,1 +1,7 @@
-updated from anywhere
+Inserted at the end of any table.
+
+Creation Insertion Deletion Update Done
+
+Multiple Table Handled
+
+Next target SELECT operation.
