@@ -1,4 +1,4 @@
-#include<iostream>
+ #include<iostream>
 #include<fstream>
 #include<sstream>
 
@@ -195,6 +195,7 @@ void createTable()
             sum+=strArr[i].numOfRows;
         }
 
+
         createRowArr(sum);
         createStringArr(sum);
 
@@ -218,7 +219,8 @@ void createTable()
             while(indiv!=strArr[i].numOfRows)
             {
                 getline(dFile,stringArr[idx]);
-                  idx++;
+                 cout<<endl<<endl<<"stringArr[idx++] : "<<idx<< "  "<<stringArr[idx]<<endl<<endl;
+                 idx++;
                  indiv++;
             }
         }
@@ -238,7 +240,10 @@ void createTable()
             int str=0;
             aFile<<header<<endl<<endl;
 
-
+            //NEED TO FIX SIZE
+              //NEED TO FIX SIZE
+                //NEED TO FIX SIZE
+                  //NEED TO FIX SIZE
                     //NEED TO FIX SIZE
              int   indiv=0;
             while(indiv!=strArr[i].numOfRows)
@@ -425,7 +430,8 @@ void insertTable()
                     for(int i=0;i<numOfTables;i++)
                     {
                        // getline(dFile,s);
-                                     dFile>>tableName;
+                      //  cout<<endl<<endl<<"ssssssssssssss" << "     "<<s<<endl<<endl;
+                                    dFile>>tableName;
                                     cout<<endl<<endl<<"tablename" << "     "<<tableName<<endl<<endl;
                                     getline(dFile,s);
                                     cout<<"falsee getline   "<<s<<endl;
@@ -461,8 +467,7 @@ void insertTable()
                     }
 
                     dFile.close();
-                        cout<<"Close hoise "<<endl;
-                    remove("database.txt");
+                     remove("database.txt");
 
                     ofstream aFile;
                     aFile.open("database.txt", ios::app);
