@@ -1,5 +1,1 @@
-Deletion from anywhere and multiple tables handled successfully.
-
-Next Target to insert again in the last table.
-
-And to update row.
+updated from anywhere
