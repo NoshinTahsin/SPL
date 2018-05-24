@@ -1,9 +1,4 @@
- 
+upto 3rd table unlimited rows 
 
-3rd table created successfully
-
-1st row inseted
-
-Now working on multiple rows 
-
+next target 4th table
  

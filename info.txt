@@ -1,4 +1,4 @@
 3
 table1 3
 table2 4
-table3 2
+table3 6
