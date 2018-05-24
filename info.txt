@@ -1,5 +1,5 @@
 4
-table1 3
-table2 4
-table3 6
+table1 2
+table2 3
+table3 5
 table4 3

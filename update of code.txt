@@ -1,7 +1,5 @@
-upto 4th table unlimited rows 
- 
-Multiple tables handled 
+Deletion from anywhere and multiple tables handled successfully.
 
-Creation and Insertion completed
+Next Target to insert again in the last table.
 
-Next Target Deletion and update
+And to update row.
