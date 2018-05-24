@@ -216,11 +216,13 @@ void createTable()
              getline(dFile,header);
             getline(dFile,s);
 
-            while(idx!=strArr[i].numOfRows)
+            int indiv=0;
+            while(indiv!=strArr[i].numOfRows)
             {
                 getline(dFile,stringArr[idx]);
                  cout<<endl<<endl<<"stringArr[idx++] : "<<idx<< "  "<<stringArr[idx]<<endl<<endl;
                  idx++;
+                 indiv++;
             }
         }
 
@@ -231,17 +233,28 @@ void createTable()
         ofstream aFile;
         aFile.open("database.txt", ios::app);
 
+        idx=0;
         for(int i=0;i<numOfTables;i++)
         {
             aFile<<strArr[i].tableName<<endl<<endl;
 
             int str=0;
             aFile<<header<<endl<<endl;
-            int j;
-            for(j=0;j<3;j++)
+
+            //NEED TO FIX SIZE
+              //NEED TO FIX SIZE
+                //NEED TO FIX SIZE
+                  //NEED TO FIX SIZE
+                    //NEED TO FIX SIZE
+             int   indiv=0;
+            while(indiv!=strArr[i].numOfRows)
             {
-                aFile<<stringArr[j]<<endl;
+                        aFile<<stringArr[idx]<<endl;
+                        idx++;
+                        indiv++;
             }
+
+            if(i!=numOfTables-1)aFile<<endl;
 
          }
 
@@ -420,31 +433,31 @@ void insertTable()
                        // getline(dFile,s);
                       //  cout<<endl<<endl<<"ssssssssssssss" << "     "<<s<<endl<<endl;
                                     dFile>>tableName;
-                                   // cout<<endl<<endl<<"tablename" << "     "<<tableName<<endl<<endl;
+                                    cout<<endl<<endl<<"tablename" << "     "<<tableName<<endl<<endl;
                                     getline(dFile,s);
-                                    //cout<<"falsee getline   "<<s<<endl;
+                                    cout<<"falsee getline   "<<s<<endl;
                                     getline(dFile,s);
                        // getline(dFile,s);
 
-                                    //cout<<"false getline  "<<s<<endl;
+                                    cout<<"false getline  "<<s<<endl;
                        // getline(dFile,s);
                                     getline(dFile,header);
-                                    //cout<<endl<<endl<<"header" << "     "<<header<<endl<<endl;
+                                    cout<<endl<<endl<<"header" << "     "<<header<<endl<<endl;
 
 
                                     getline(dFile,s);
-                                    //cout<<"false getline    "<<s<<endl;
+                                    cout<<"false getline    "<<s<<endl;
 
 
                                     int individualIndexTable=0;
-                                    //cout<<"i "<<i<<"strArr[i].numOfRows   "<<strArr[i].numOfRows<<endl;
+                                    cout<<"i "<<i<<"strArr[i].numOfRows   "<<strArr[i].numOfRows<<endl;
                                    while(individualIndexTable!=strArr[i].numOfRows)
                                     {
-
-                                                //cout<<"IDX "<<idx<<endl;
+                                                cout<<"ha dhuksi"<<endl;
+                                                cout<<"IDX "<<idx<<endl;
 
                                                 getline(dFile,stringArr[idx]);
-
+                                            //    cout<<"hmmm"<<endl;
                                                 cout<<endl<<endl<<"stringArr[idx] : "<<idx<<"      "<<stringArr[idx]<<endl<<endl;
                                                 idx++;
                                                 individualIndexTable++;
@@ -453,22 +466,22 @@ void insertTable()
                                    if(i!=numOfTables-1)
                                    {
                                                getline(dFile,s);
-
+                                               cout<<"hmm getline korsi ."<<endl;
                                    }
                     }
 
                     dFile.close();
-
+                        cout<<"Close hoise "<<endl;
                     remove("database.txt");
 
                     ofstream aFile;
                     aFile.open("database.txt", ios::app);
 
-
+                     cout<<"467 "<<endl;
                      idx=0;
                     for(int i=0;i<numOfTables;i++)
                     {
-
+                                   cout<<"For e dhuklam "<<"i  "<<i <<endl;
                                     aFile<<strArr[i].tableName<<endl<<endl;
                                     aFile<<header<<endl<<endl;
 
@@ -480,7 +493,7 @@ void insertTable()
                                                 individualIndexTable++;
                                     }
 
-                                    if(i!=numOfTables-1)aFile<<endl;
+                                  if(i!=numOfTables-1)  aFile<<endl;
                     }
 
                     int len=s7.length();

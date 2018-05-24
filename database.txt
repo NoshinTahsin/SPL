@@ -14,3 +14,10 @@ ID	NAME				ROLL	EMAIL
 5	name2,				902	2@gmail.com
 6	name2,				902	2@gmail.com
 7	name2,				902	2@gmail.com
+
+table3
+
+ID	NAME				ROLL	EMAIL				
+
+8	name2,				902	2@gmail.com
+1	saaj,				914	saaj@gmail.com
