@@ -1,7 +1,3 @@
-Created SELECT-record table
-
-kept select record in this form
-
 
 
 Noshin Tahsin
@@ -22,5 +18,4 @@ Ishita Sur Apan
 apan7878
 
 Checked NAME and EMAIL from table3
-
 
