@@ -1,0 +1,7 @@
+upto 2nd table unlimited rows 
+
+next target 3rd table
+
+3rd table created successfully
+
+but error in inserting 
