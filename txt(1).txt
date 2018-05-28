@@ -8,32 +8,32 @@ FROM employee1
 
 ******
 
-SELECT * FROM employee1
+SELECT * FROM table1
 
 ******
 
 ******
 
-DELETE FROM employee1 WHERE ID = 2
+DELETE FROM table1 WHERE ID = 2
 
 ******
 
 ******
 
-UPDATE employee1 WHERE ID = 1
+UPDATE table WHERE ID = 1
 ( 12 , upName , 90189 , up1@gmail.com , Shahbag )
 
 UPDATE table2 WHERE ID = 1
 ( 2 , upName , 901 , up1@gmail.com )
 
 ******
- 
+
 
 
 ******
 
-CREATE TABLE table6 (
-ID int 
+CREATE TABLE table1 (
+ID int
 NAME VARCHAR
 ROLL int
 EMAIL VARCHAR ) ;
@@ -58,8 +58,8 @@ values ( 7 , Name7 , 907 , 7@gmail.com )
 ******
 
 
-CREATE TABLE table5 (
-ID int 
+CREATE TABLE table2 (
+ID int
 NAME VARCHAR
 ROLL int
 EMAIL VARCHAR ) ;
@@ -104,6 +104,5 @@ values ( 4 , emp4 , 34232 , emp4@gmail.com , Banasree )
 
 *******
 
- 
 
- 
+

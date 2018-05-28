@@ -797,7 +797,7 @@ void updateRow()
 
                     cin>>c>>s7>>s9;
                     aFile<<s7<<'\t'<<'\t'<<'\t';
-                    cout<<"c s7 s9 "<<c<<" "<<s7<<" "<<s9<<endl;
+                   // cout<<"c s7 s9 "<<c<<" "<<s7<<" "<<s9<<endl;
 
                     for(int y=0;y<needCol-1;y++)
                     {
