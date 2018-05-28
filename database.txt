@@ -1,7 +1,0 @@
-hjhj
-
-ID					NAME				MOBILE				EMAIL				ADDRESS				
-
-
-2	employee1			01882959157			employee@gmail.com	address
-
