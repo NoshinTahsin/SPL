@@ -1,5 +1,6 @@
-3
-table1 1 4
+4
+table1 3 4
 table2 2 4
-employee1 3 5
+employee1 1 5
+table3 2 4
 00

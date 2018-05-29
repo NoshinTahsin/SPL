@@ -1,7 +1,7 @@
 ******
 
-SELECT MOBILE ADDRESS
-FROM employee1
+SELECT ROLL EMAIL
+FROM table1
 
 ******
 
@@ -14,17 +14,17 @@ SELECT * FROM table1
 
 ******
 
-DELETE FROM table1 WHERE ID = 2
+DELETE FROM employee1 WHERE ID = 2
 
 ******
 
 ******
 
-UPDATE table WHERE ID = 1
+UPDATE employee1 WHERE ID = 1
 ( 12 , upName , 90189 , up1@gmail.com , Shahbag )
 
 UPDATE table2 WHERE ID = 1
-( 2 , upName , 901 , up1@gmail.com )
+( 1 , upName1 , 901 , up1@gmail.com )
 
 ******
 
@@ -38,8 +38,8 @@ NAME VARCHAR
 ROLL int
 EMAIL VARCHAR ) ;
 
-INSERT INTO table3
-values ( 77 , Name1 , 901 , 1@gmail.com )
+INSERT INTO table1
+values ( 1 , Name1 , 901 , 1@gmail.com )
 
 INSERT INTO table1
 values ( 2 , Name2 , 902 , 2@gmail.com )
@@ -58,14 +58,14 @@ values ( 7 , Name7 , 907 , 7@gmail.com )
 ******
 
 
-CREATE TABLE table2 (
+CREATE TABLE table3 (
 ID int
 NAME VARCHAR
 ROLL int
 EMAIL VARCHAR ) ;
 
-INSERT INTO table5
-values ( 6 , Name4 , 904 , 4@gmail.com )
+INSERT INTO table3
+values ( 8 , Name8 , 908 , 8@gmail.com )
 
 INSERT INTO table2
 values ( 5 , Name5 , 905 , 5@gmail.com )

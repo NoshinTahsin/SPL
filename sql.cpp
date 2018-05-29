@@ -678,6 +678,7 @@ void updateRow()
      iInfo.close();
 
      int g=0;
+     string s3;
 
      if(numOfTables==0)
      {
@@ -686,7 +687,7 @@ void updateRow()
 
      else
      {
-        string s3,where,row,equ;
+        string  where,row,equ;
         int rowToUpdate;
         cin>>s3>>where>>row>>equ>>rowToUpdate;
 
@@ -802,7 +803,7 @@ void updateRow()
                     {
                         cin>>s7>>s9;
                         aFile<<s7<<'\t'<<'\t'<<'\t';
-                        cout<<"s7"<<"  "<<s7<<endl;
+                        //cout<<"s7"<<"  "<<s7<<endl;
                     }
 
                     aFile<<endl;
@@ -845,7 +846,7 @@ void selectInfo()
 
         string userName,userID;
 
-        cout<<"Enter your name : "<<endl;
+        cout<<endl<<"Enter your name : "<<endl;
         getline(cin,userName);
         getline(cin,userName);
         cout<<"Enter user ID : "<<endl;
@@ -999,7 +1000,7 @@ void selectInfo()
         cin>>col2>>from>>s3;
 
 
-        cout<<"Enter your name : "<<endl;
+        cout<<endl<<"Enter your name : "<<endl;
         getline(cin,userName);
         getline(cin,userName);
         cout<<"Enter user ID : "<<endl;

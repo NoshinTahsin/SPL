@@ -1,14 +1,35 @@
 
 
-Saaj
-0909
+Noshin
+123
+
+Checked employee1
+
+
+
+Tahsin
+45455
 
 Checked table1
 
 
 
 Saaj
-9898
+78778
 
-Checked MOBILE and ADDRESS from employee1
+Checked NAME and EMAIL from employee1
+
+
+
+Saaj
+0909
+
+Checked ROLL and EMAIL from table1
+
+
+
+Saaj
+9999
+
+Checked ROLL and EMAIL from table1
 

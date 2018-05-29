@@ -2,19 +2,26 @@ table1
 
 ID			NAME			ROLL			EMAIL			
 
+1			Name1			901			1@gmail.com			
 2			Name2			902			2@gmail.com			
+3			Name3			903			3@gmail.com			
 
 table2
 
 ID			NAME			ROLL			EMAIL			
 
-2			upName			901			up1@gmail.com			
-6			Name6			906			6@gmail.com			
+1			upName1			901			up1@gmail.com			
+5			Name5			905			5@gmail.com			
 
 employee1
 
 ID			NAME			MOBILE			EMAIL			ADDRESS			
 
 1			emp1			55732			emp1@gmail.com			Mirpur			
-2			emp2			55443			emp2@gmail.com			Khilgaon			
-3			emp3			55232			emp3@gmail.com			Agargaon			
+
+table3
+
+ID			NAME			ROLL			EMAIL			
+
+7			Name7			907			7@gmail.com			
+8			Name8			908			8@gmail.com			
